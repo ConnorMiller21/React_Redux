@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+	font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   color: #4d4d4d;
+	margin: 0 auto;
+	min-width: 550px;
+	max-width: 1200px;
+}
+
+a.active {
+	color: orange;
+}
+
+nav {
+	padding-top: 20px;
+}
