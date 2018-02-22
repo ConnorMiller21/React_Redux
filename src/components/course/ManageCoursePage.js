@@ -12,6 +12,14 @@ class ManageCoursePage extends Component {
 		errors: {}
 	};
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.id !== nextProps.course.id) {
+			this.setState({
+				course: Object.assign({}, nextProps.course)
+			});
+		}
+	}
+
 	updateCourseState = (evt) => {
 		//debugger; //es-lint disable line
 		const field = evt.target.name;
@@ -23,7 +31,7 @@ class ManageCoursePage extends Component {
 	}
 
 	saveCourse = (evt) => {
-		//evt.preventDefault();
+		evt.preventDefault();
 		this.props.actions.saveCourse(this.state.course);
 	}
 
@@ -46,12 +54,13 @@ class ManageCoursePage extends Component {
 }
 
 ManageCoursePage.propTypes = {
-	course: PropTypes.object.isRequired,
+	//course: PropTypes.object.isRequired,
 	authors: PropTypes.array.isRequired,
 	actions: PropTypes.object.isRequired
 };
 
 function getCourseById(courses, id) {
+	//debugger; // eslint-disable-line
 	const course = courses.filter( (course) => course.id === id);
 	if (course.length) {
 		return course[0]; // since filter return array you must pass the item that made the array
@@ -60,11 +69,12 @@ function getCourseById(courses, id) {
 }
 
 function mapStateToProps(state, ownProps) {
-	const courseId = ownProps.params.id; // gets the url path '/course:id'
+	const courseId = ownProps.match.params.id; // gets the url path '/course:id'
+	//console.log(ownProps.match.params.id);
 
 	let course = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
 
-	if (course.id) {
+	if (courseId && state.courses.length > 0) {
 		course = getCourseById(state.courses, courseId);
 	}
 

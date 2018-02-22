@@ -20,7 +20,7 @@ class CoursesPage extends Component {
 				<div className="jumbotron text-center">
 					<h1>Courses</h1>
 					<hr className='my' />
-					<Link to='/course' className='btn btn-primary'>Add Course</Link>
+					<Link to='/course' className='btn btn-primary btn-lg'>Add Course</Link>
 				</div>
 				<CourseList courses={ courses } />
 			</div>

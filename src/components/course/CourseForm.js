@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
-import { Link } from 'react-router-dom';
 
 const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }) => {
 	return (
@@ -40,14 +39,14 @@ const CourseForm = ({ course, allAuthors, onSave, onChange, loading, errors }) =
 				errors={ errors.length }
 			/>
 
-			<Link
-				to='/courses'
+			<input
+				type='submit'
+				value={ loading ? 'Saving..' : 'Save'}
 				disabled={ loading }
 				className='btn btn-primary'
 				onClick={ onSave }
-			>
-				{ loading ? 'Saving..' : 'Save' }
-			</Link>
+			/>
+
 		</form>
 	);
 };
